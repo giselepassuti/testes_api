@@ -1,0 +1,530 @@
+{
+	"info": {
+		"_postman_id": "bed512ad-4fab-4477-ab33-de032aa268b1",
+		"name": "Hunter APi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listas Lead",
+			"item": [
+				{
+					"name": "Criar Lista",
+					"item": [
+						{
+							"name": "Criar lista",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"//pm.iterationData.get(\"lead_list\")"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"id_list\", jsonData.data.list_id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "/*{\r\n  \"name\": \"{{lead_list}}\"\r\n}*/\r\n{\r\n \"name\": \"listaB\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}leads_lists",
+									"host": [
+										"{{url_base}}leads_lists"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Recuperar Listas",
+					"item": [
+						{
+							"name": "Todas as Listas",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}leads_lists",
+									"host": [
+										"{{url_base}}leads_lists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista específica",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.iterationData.get(\"lead_list\")"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}leads_lists/{{id_list}}",
+									"host": [
+										"{{url_base}}leads_lists"
+									],
+									"path": [
+										"{{id_list}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Editar Lista",
+					"item": [
+						{
+							"name": "Editar lista",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.get(\"id_list\");\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "/*{\r\n  \"name\": \"{{lead_list_edit}}\"\r\n}*/\r\n{\r\n  \"name\": \"listaA_edit\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}leads_lists/{{id_list}}",
+									"host": [
+										"{{url_base}}leads_lists"
+									],
+									"path": [
+										"{{id_list}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Excluir lista",
+					"item": [
+						{
+							"name": "Excluir lista",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.get(\"id_list\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}leads_lists/{{id_list}}",
+									"host": [
+										"{{url_base}}leads_lists"
+									],
+									"path": [
+										"{{id_list}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Leads",
+			"item": [
+				{
+					"name": "Criar Lead",
+					"item": [
+						{
+							"name": "Criar Lead",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.iterationData.get(\"email\")\r",
+											"pm.iterationData.get(\"first_namel\")\r",
+											"pm.iterationData.get(\"last_name\")\r",
+											"pm.iterationData.get(\"position\")\r",
+											"pm.iterationData.get(\"industry\")\r",
+											"pm.iterationData.get(\"size\")\r",
+											"pm.iterationData.get(\"site\")\r",
+											"pm.iterationData.get(\"phone\")\r",
+											"pm.iterationData.get(\"twitter\")    \r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"id_lead\", jsonData.data.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "/*{\r\n  \"email\": \"{{email}}\",\r\n  \"first_name\": \"{{first_name}}\",\r\n  \"last_name\": \"{{last_name}}\",\r\n  \"position\": \"{{position}}\",\r\n  \"company\": \"{{company}}\",\r\n  \"company_industry\": \"{{industry}}\",\r\n  \"company_size\": \"{{size}}\",\r\n  \"confidence_score\": 95,\r\n  \"website\": \"{{site}}\",\r\n  \"phone_number\": \"{{phone}}\",\r\n  \"twitter\": \"{{twitter}}\",\r\n  \"custom_attributes\": {\r\n    \"customer_id\": \"cus-1234abcd\"\r\n  }\r\n}*/\r\n{\r\n  \"email\": \"aleatorio@email.com\",\r\n  \"first_name\": \"Aleatorio\",\r\n  \"last_name\": \"Silva\",\r\n  \"position\": \"CEO\",\r\n  \"company\": \"Aleatory\",\r\n  \"company_industry\": \"TI\",\r\n  \"company_size\": \"200\",\r\n  \"confidence_score\": 95,\r\n  \"website\": \"aleatorio.com\",\r\n  \"phone_number\": \"444444\",\r\n  \"twitter\": \"aleatorio\",\r\n  \"custom_attributes\": {\r\n    \"customer_id\": \"cus-1234abcd\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}leads",
+									"host": [
+										"{{url_base}}leads"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Recuperar Lead",
+					"item": [
+						{
+							"name": "Lead específico",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.get(\"id_lead\");\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}leads/{{id_lead}}",
+									"host": [
+										"{{url_base}}leads"
+									],
+									"path": [
+										"{{id_lead}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Todos os leads",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}leads",
+									"host": [
+										"{{url_base}}leads"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Editar Lead",
+					"item": [
+						{
+							"name": "Editar Lead",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.get(\"id_lead\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "/*{\r\n  \"email\": \"{{email_edit}}\",\r\n  \"first_name\": \"{{first_name_edit}}\",\r\n  \"last_name\": \"{{last_name_edit}}\",\r\n  \"position\": \"{{position_edit}}\",\r\n  \"company\": \"{{company_edit}}\",\r\n  \"company_industry\": \"{{industry_edit}}\",\r\n  \"company_size\": \"{{size_edit}}\",\r\n  \"confidence_score\": 95,\r\n  \"website\": \"{{site_edit}}\",\r\n  \"phone_number\": \"{{phone_edit}}\",\r\n  \"twitter\": \"{{twitter_edit}}\",\r\n  \"custom_attributes\": {\r\n    \"customer_id\": \"cus-1234abcd\"\r\n  }\r\n}*/\r\n{\r\n  \"email\": \"aleatorio@email.com\",\r\n  \"first_name\": \"Aleatorio\",\r\n  \"last_name\": \"Silva\",\r\n  \"position\": \"CEO\",\r\n  \"company\": \"Aleatory\",\r\n  \"company_industry\": \"TI\",\r\n  \"company_size\": \"200\",\r\n  \"confidence_score\": 95,\r\n  \"website\": \"aleatorio.com\",\r\n  \"phone_number\": \"444444\",\r\n  \"twitter\": \"aleatorio\",\r\n  \"custom_attributes\": {\r\n    \"customer_id\": \"cus-1234abcd\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}leads/{{id_lead}}",
+									"host": [
+										"{{url_base}}leads"
+									],
+									"path": [
+										"{{id_lead}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Excluir Lead",
+					"item": [
+						{
+							"name": "Excluir Lead",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.get(\"id_lead\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}leads/{{id_lead}}",
+									"host": [
+										"{{url_base}}leads"
+									],
+									"path": [
+										"{{id_lead}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "api_key",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "aa84d43eacf2f9b8d386d62aeb4e0be5a3323895",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"/*Teste status code 200",
+					"  Teste 'OK' no status do response*/ ",
+					"if (pm.request.method == 'GET') {",
+					"",
+					"    pm.test(\"Status code is 200\", function () {",
+					"        pm.response.to.have.status(200);",
+					"    });",
+					"    pm.test(\"Status code name has string\", function () {",
+					"        pm.response.to.have.status(\"OK\");",
+					"    });",
+					"}",
+					"/*Teste tempo de resposta menor que 2s",
+					"indica a variavel \"id_lead\" para a request de GET específico*/",
+					"if (pm.request.method == 'GET' || pm.request.method == 'POST') {",
+					"    pm.test(\"Response time is less than 2000ms\", function () {",
+					"        pm.expect(pm.response.responseTime).to.be.below(2000);",
+					"        if (pm.info.requestName == 'Lead específico')",
+					"        pm.environment.get(\"id_lead\")",
+					"    });",
+					"}",
+					"/*Teste status code: 200.201,202",
+					"  Teste 'Created' no status do response*/",
+					"",
+					"if (pm.request.method == 'POST') {",
+					"    pm.test(\"Successful POST request\", function () {",
+					"        pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);",
+					"    });",
+					"    pm.test(\"Status code name has string\", function () {",
+					"        pm.response.to.have.status(\"Created\");",
+					"    });",
+					"}",
+					"/* Indica para o metodo GET e PUT a variavel de ambiente ",
+					"   Teste status code 204 ",
+					"   Teste 'No Content' no status do response*/ ",
+					"if (pm.request.method == 'DELETE' || pm.request.method== 'PUT') {",
+					"    pm.environment.get(\"id_lead\");",
+					"    pm.test(\"Status code name has string\", function () {",
+					"        pm.response.to.have.status(\"No Content\");",
+					"    });",
+					"    pm.test(\"Status code is 204\", function () {",
+					"        pm.response.to.have.status(204);",
+					"    });",
+					"}"
+				]
+			}
+		}
+	]
+}
