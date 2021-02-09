@@ -20,3 +20,4 @@ Projeto dedicado ao aprendizado de conceitos e ferramentas referentes à testes 
 - https://www.postman.com/
 # Documentação Postman
 - https://learning.postman.com/docs/getting-started/introduction/
+![](images/apiexplicacao.png)
