@@ -11,7 +11,7 @@ Projeto dedicado ao aprendizado de conceitos e ferramentas referentes à testes 
 - https://documenter.getpostman.com/view/14271767/TW74hjkU 
 
 
-# Ferramnetas utilizadas
+# Ferramentas utilizadas
 # API Hunter
 - https://hunter.io/
 # Documentação API Hunter
